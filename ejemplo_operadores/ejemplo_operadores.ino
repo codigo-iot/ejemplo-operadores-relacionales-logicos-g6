@@ -24,6 +24,7 @@ void setup() {// Inicio de void setup ()
 void loop() {// Inicio de void loop
   // put your main code here, to run repeatedly:
 
+
 }// Fin de void loop
 
 // Funcioes del usuario
