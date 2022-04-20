@@ -43,8 +43,11 @@ const int BOTON3 = 13;
 //Constantes de leds
 const int LED1 = 4;
 const int LED2 = 2;
+//Nivel de temperatura
+const int TEMP_H = 28;
 
 // Variables
+int boton1_dato;
 
 // Definición de objetos
 DHT dht(DHTPIN, DHTTYPE);
@@ -63,7 +66,7 @@ void setup() {// Inicio de void setup ()
   pinMode (LED1, OUTPUT);
   pinMode (LED2, OUTPUT);
 
-  dht.begin();
+  dht.begin();//Iniciar comunicacion con el sensor DHT
 
 }// Fin de void setup
 
@@ -88,6 +91,13 @@ void loop() {// Inicio de void loop
     digitalWrite (LED1, LOW);
   } else {
     digitalWrite (LED1, HIGH);
+  }
+
+  //********Automático por temperatura**********
+  if (t > TEMP_H) {
+    digitalWrite (LED2, HIGH);
+  } else {
+    digitalWrite (LED2, LOW);
   }
 
 }// Fin de void loop
