@@ -48,6 +48,8 @@ const int TEMP_H = 28;
 
 // Variables
 int boton1_dato;
+int boton2_dato;
+int boton3_dato;
 
 // Definición de objetos
 DHT dht(DHTPIN, DHTTYPE);
@@ -93,12 +95,16 @@ void loop() {// Inicio de void loop
     digitalWrite (LED1, HIGH);
   }
 
-  //********Automático por temperatura**********
-  if (t > TEMP_H) {
+  //********Automático por temperatura, sobrecarga y alta demanda**********
+  boton2_dato = digitalRead (BOTON2);
+  boton3_dato = digitalRead (BOTON3);
+  if (t > TEMP_H || boton2_dato == 1 || boton3_dato == 1) {
     digitalWrite (LED2, HIGH);
   } else {
     digitalWrite (LED2, LOW);
   }
+
+  
 
 }// Fin de void loop
 
