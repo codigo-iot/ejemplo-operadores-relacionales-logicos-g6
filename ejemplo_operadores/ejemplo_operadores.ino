@@ -80,15 +80,14 @@ void loop() {// Inicio de void loop
     Serial.println(F("Failed to read from DHT sensor!"));
     return;
   }
-  Serial.print(F("%  Temperature: "));
-  Serial.print(t);
+  Serial.println(t);
 
   //********Lectura del boton1********
   boton1_dato = digitalRead (BOTON1);
   if (boton1_dato == 1) {
-    digitalWrite (LED1, HIGH);
-  } else {
     digitalWrite (LED1, LOW);
+  } else {
+    digitalWrite (LED1, HIGH);
   }
 
 }// Fin de void loop
