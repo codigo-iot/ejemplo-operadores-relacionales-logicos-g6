@@ -30,23 +30,66 @@
  */
 
 // Bibliotecas
+#include "DHT.h"
 
 // Constantes
+#define DHTPIN 12
+#define DHTTYPE DHT11 
+
+//Constantes de botones
+const int BOTON1 = 14;
+const int BOTON2 = 15;
+const int BOTON3 = 13;
+//Constantes de leds
+const int LED1 = 4;
+const int LED2 = 2;
 
 // Variables
 
 // Definición de objetos
+DHT dht(DHTPIN, DHTTYPE);
 
 // Condiciones iniciales - Se ejecuta sólo una vez al energizar
 void setup() {// Inicio de void setup ()
   // Aquí va tu código
+  Serial.begin(9600);
+  Serial.println(F("DHTxx test!"));
+
+  //Configurar botones
+  pinMode (BOTON1, INPUT_PULLUP);
+  pinMode (BOTON2, INPUT_PULLUP);
+  pinMode (BOTON3, INPUT_PULLUP);
+  //Configurar Leds
+  pinMode (LED1, OUTPUT);
+  pinMode (LED2, OUTPUT);
+
+  dht.begin();
 
 }// Fin de void setup
 
 // Cuerpo del programa - Se ejecuta constamente
 void loop() {// Inicio de void loop
   // put your main code here, to run repeatedly:
+  delay(2000);
 
+  //*******Lectura del sensor*********
+  // Read temperature as Celsius (the default)
+  float t = dht.readTemperature();
+   // Check if any reads failed and exit early (to try again).
+  if (isnan(t)) {
+    Serial.println(F("Failed to read from DHT sensor!"));
+    return;
+  }
+  Serial.print(F("%  Temperature: "));
+  Serial.print(t);
+
+  //********Lectura del boton1********
+  boton1_dato = digitalRead (BOTON1);
+  if (boton1_dato == 1) {
+    digitalWrite (LED1, HIGH);
+  } else {
+    digitalWrite (LED1, LOW);
+  }
 
 }// Fin de void loop
 
